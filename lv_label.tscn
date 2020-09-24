@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/tutorial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://lv_label.gd" type="Script" id=2]
+
+[node name="lv_label" type="RichTextLabel"]
+margin_right = 300.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 300, 50 )
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
