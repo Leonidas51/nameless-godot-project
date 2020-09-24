@@ -23,6 +23,7 @@ func _ready():
 		lv_label.lv_id = i
 		lv_label.set_bbcode('[url=' + String(i) + ']' + lv_text + '[/url]')
 		lv_label.push_meta(i)
+		lv_label.add_to_group("lv_labels")
 		lv_list_node.add_child(lv_label)
 		
 		if i != 0 and i % 10 == 0:
@@ -34,11 +35,13 @@ func _input(event):
 		return
 	
 	if event.is_action("exit"):
-		var lv = game.get_node_or_null("Level")
-		if lv:
-			lv.queue_free()
-			lv_select.show()
+		return_to_select()
 
+func return_to_select():
+	var lv = game.get_node_or_null("Level")
+	if lv:
+		lv.queue_free()
+		lv_select.show()
 
 func _process(delta):
 	if need_loading:
@@ -47,21 +50,25 @@ func _process(delta):
 	
 func on_lv_complete():
 	#transition stuff goes here
+	get_tree().call_group("lv_labels", "mark_label_complete", current_lv)
 	
-	current_lv = current_lv + 1
+	current_lv += 1
+	if current_lv >= LEVEL_LIST.size():
+		return_to_select()
+		return
+	
 	load_new_level()
 	
+
 func on_defeat():
 	#transition stuff goes here
 	
 	load_new_level()
-	#get_tree().reload_current_scene()
 	
 func restart_lv():
 	#transition stuff goes here
 	
 	load_new_level()
-	#get_tree().reload_current_scene()
 
 func load_new_level():
 	var prev_lv = game.get_node_or_null("Level")

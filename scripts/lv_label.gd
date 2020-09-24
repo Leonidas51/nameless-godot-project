@@ -10,3 +10,7 @@ func _ready():
 func pressed(meta):
 	LevelController.current_lv = int(meta)
 	LevelController.load_new_level()
+
+func mark_label_complete(id):
+	if lv_id == id:
+		set("custom_colors/default_color",Color("#00ab3f"))
