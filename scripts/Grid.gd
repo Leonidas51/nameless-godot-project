@@ -133,7 +133,6 @@ func turn():
 		
 	if grid[human_pos.x][human_pos.y].has_enemy():
 		LevelController.on_defeat()
-		return
 		
 	if !key_taken and grid[human_pos.x][human_pos.y].has_entity_by_type(Constant.Entity_types.KEY):
 		grid[human_pos.x][human_pos.y].clear_entity(Constant.Entity_types.KEY)
@@ -162,6 +161,8 @@ func undo_state():
 	
 	states.pop_back()
 	state = states.back()
+	
+	LevelController.undo_defeat()
 	
 	move_entity(human, human_pos, state.human_pos)
 	if dagger:

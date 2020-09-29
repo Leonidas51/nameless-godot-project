@@ -12,6 +12,7 @@ var need_loading = false
 var current_lv_box = 1
 
 onready var game = get_node("/root/Game")
+onready var fader = get_node("/root/Game/Fade")
 onready var lv_select = get_node("/root/Game/level_select")
 onready var lv_list_node = get_node("/root/Game/level_select/level_list1")
 
@@ -44,12 +45,17 @@ func return_to_select():
 		lv_select.show()
 
 func _process(delta):
-	if need_loading:
+	if need_loading and !fader.fade:
+		var prev_lv = game.get_node_or_null("Level")
+		if prev_lv:
+			prev_lv.queue_free()
+			return
+
+		lv_select.hide()
 		game.add_child(load("res://levels/" + LEVEL_LIST[current_lv] + ".tscn").instance())
 		need_loading = false
 	
 func on_lv_complete():
-	#transition stuff goes here
 	get_tree().call_group("lv_labels", "mark_label_complete", current_lv)
 	
 	current_lv += 1
@@ -59,23 +65,18 @@ func on_lv_complete():
 	
 	load_new_level()
 	
-
 func on_defeat():
-	#transition stuff goes here
-	
 	load_new_level()
 	
-func restart_lv():
-	#transition stuff goes here
+func undo_defeat():
+	fader.reset()
+	need_loading = false
 	
+func restart_lv():
 	load_new_level()
 
 func load_new_level():
-	var prev_lv = game.get_node_or_null("Level")
 	
-	lv_select.hide()
-	
-	if prev_lv:
-		prev_lv.queue_free()
+	fader.calm = false
 	
 	need_loading = true
