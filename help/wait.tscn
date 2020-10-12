@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/tutorial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/art/btns_wait_notebook_smol.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/btns_wait_num_smol.png" type="Texture" id=3]
+
+[node name="Help" type="MarginContainer"]
+margin_left = 288.0
+margin_top = 96.0
+margin_right = 736.0
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 448.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_left = 89.0
+margin_top = 15.0
+margin_right = 129.0
+margin_bottom = 49.0
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 133.0
+margin_top = 10.0
+margin_right = 190.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = " or "
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+margin_left = 194.0
+margin_top = 15.0
+margin_right = 234.0
+margin_bottom = 49.0
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 238.0
+margin_top = 10.0
+margin_right = 359.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = " to wait"

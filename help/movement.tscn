@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/tutorial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/art/btns_move_notebook_smol.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/btns_move_num_smol.png" type="Texture" id=3]
+
+[node name="Help" type="MarginContainer"]
+margin_left = 64.0
+margin_top = 448.0
+margin_right = 992.0
+margin_bottom = 544.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 928.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_left = 258.0
+margin_right = 381.0
+margin_bottom = 96.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_left = 385.0
+margin_top = 26.0
+margin_right = 420.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = "or"
+valign = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+margin_left = 424.0
+margin_right = 547.0
+margin_bottom = 96.0
+texture = ExtResource( 2 )
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 551.0
+margin_top = 26.0
+margin_right = 669.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = "to move"
+valign = 1

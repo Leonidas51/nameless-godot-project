@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/tutorial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/art/btns_throw_smol.png" type="Texture" id=2]
+
+[node name="MarginContainer" type="MarginContainer"]
+margin_left = 224.0
+margin_top = 416.0
+margin_right = 832.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 608.0
+margin_bottom = 96.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 608.0
+margin_bottom = 44.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 113.0
+margin_top = 5.0
+margin_right = 153.0
+margin_bottom = 39.0
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 157.0
+margin_right = 494.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = " to throw your dagger"
+valign = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 608.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 36.0
+margin_right = 571.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
+text = "bump into dagger to pick it back up"
+valign = 1

@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/art/btns_move_num_smol.png" type="Texture" id=2]
-[ext_resource path="res://assets/fonts/tutorial.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/art/btns_move_notebook_smol.png" type="Texture" id=4]
+[ext_resource path="res://help/movement.tscn" type="PackedScene" id=2]
 
 [node name="Level" instance=ExtResource( 1 )]
 
@@ -19,48 +17,7 @@ position = Vector2( 864, 256 )
 [node name="Key" parent="Grid" index="4"]
 position = Vector2( 512, 96 )
 
-[node name="Help" type="MarginContainer" parent="." index="1"]
-margin_left = 64.0
-margin_top = 448.0
-margin_right = 992.0
-margin_bottom = 544.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Help" index="0"]
-margin_right = 928.0
-margin_bottom = 96.0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Help/HBoxContainer" index="0"]
-margin_left = 258.0
-margin_right = 381.0
-margin_bottom = 96.0
-texture = ExtResource( 2 )
-
-[node name="Label" type="Label" parent="Help/HBoxContainer" index="1"]
-margin_left = 385.0
-margin_top = 26.0
-margin_right = 420.0
-margin_bottom = 70.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
-text = "or"
-valign = 1
-
-[node name="TextureRect2" type="TextureRect" parent="Help/HBoxContainer" index="2"]
-margin_left = 424.0
-margin_right = 547.0
-margin_bottom = 96.0
-texture = ExtResource( 4 )
-
-[node name="Label2" type="Label" parent="Help/HBoxContainer" index="3"]
-margin_left = 551.0
-margin_top = 26.0
-margin_right = 669.0
-margin_bottom = 70.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.780392, 0.690196, 0.545098, 1 )
-text = "to move"
-valign = 1
+[node name="Help" parent="." index="1" instance=ExtResource( 2 )]
+margin_top = 384.0
+margin_right = 960.0
+margin_bottom = 480.0

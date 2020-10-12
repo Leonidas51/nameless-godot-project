@@ -4,9 +4,9 @@ var current_lv = 0
 const LEVEL_LIST = [
 	"Welcome", "Fetch Quest", "Chase", "Circles",
 	"Trickery", "Patience", "Distance", "Preparations", 
-	"Hide and Seek", "On my Tail",
-	"Ready, Aim", "Up", "Cavern",
-	"Self-defense", "Swordplay", "Surround", "Blocked", "Corridors", 
+	"Hallways", "On my Tail", "Ready, Aim", "Up", "Cavern",
+	"Self-defense", "Swordplay", "Ascension", "Roguelike", "No Escape", 
+	"Skills", "Surround", "Blocked", "Corridors", "Yes Escape"
 	]
 var need_loading = false
 var current_lv_box = 1
@@ -27,7 +27,7 @@ func _ready():
 		lv_label.add_to_group("lv_labels")
 		lv_list_node.add_child(lv_label)
 		
-		if i != 0 and i % 10 == 0:
+		if i == 10 or i == 21:
 			current_lv_box += 1
 			lv_list_node = get_node("/root/Game/level_select/level_list" + String(current_lv_box))
 
@@ -47,12 +47,16 @@ func return_to_select():
 func _process(delta):
 	if need_loading and !fader.fade:
 		var prev_lv = game.get_node_or_null("Level")
+		var lv_instance = load("res://levels/" + LEVEL_LIST[current_lv] + ".tscn").instance()
+		
 		if prev_lv:
 			prev_lv.queue_free()
 			return
 
 		lv_select.hide()
-		game.add_child(load("res://levels/" + LEVEL_LIST[current_lv] + ".tscn").instance())
+		
+		game.add_child(lv_instance)
+		lv_instance.show_name(LEVEL_LIST[current_lv])
 		need_loading = false
 	
 func on_lv_complete():
