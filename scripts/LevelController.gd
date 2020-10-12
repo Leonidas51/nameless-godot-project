@@ -4,9 +4,9 @@ var current_lv = 0
 const LEVEL_LIST = [
 	"Welcome", "Fetch Quest", "Chase", "Circles",
 	"Trickery", "Patience", "Distance", "Preparations", 
-	"Hide and Seek", "On my Tail", "Hallways",
+	"Hide and Seek", "On my Tail",
 	"Ready, Aim", "Up", "Cavern",
-	"Self-defense", "Swordplay", "Surround", "Corridors", "Blocked"
+	"Self-defense", "Swordplay", "Surround", "Blocked", "Corridors", 
 	]
 var need_loading = false
 var current_lv_box = 1

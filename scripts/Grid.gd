@@ -10,6 +10,7 @@ var dagger_attached = true
 var exit_pos
 var key_pos
 var key_taken = false
+var controls_disabled = true
 
 onready var exit = $Exit
 onready var key = $Key
@@ -107,7 +108,8 @@ func _ready():
 	for enemy in enemies.get_children():
 		var enemy_pos = world_to_map(enemy.position)
 		grid[enemy_pos.x][enemy_pos.y].add_entity(enemy.get_type())
-		
+	
+	controls_disabled = false
 	push_state()
 
 func _input(event):
@@ -132,6 +134,7 @@ func turn():
 		enemy.execute_behaviour(human_pos)
 		
 	if grid[human_pos.x][human_pos.y].has_enemy():
+		controls_disabled = true
 		LevelController.on_defeat()
 		
 	if !key_taken and grid[human_pos.x][human_pos.y].has_entity_by_type(Constant.Entity_types.KEY):
@@ -140,6 +143,7 @@ func turn():
 		key.hide()
 
 	if exit_pos == human_pos and key_taken:
+		controls_disabled = true
 		LevelController.on_lv_complete()
 		
 	push_state()
@@ -178,11 +182,16 @@ func undo_state():
 
 	for enemy in enemies.get_children():
 		enemy.undo_state()
+	
+	controls_disabled = false
 
 func try_move_human(human, x, y):
 	var new_human_pos = world_to_map(human.position) + Vector2(x, y)
 	var new_dagger_pos
 	var dagger_tile_movable = true
+
+	if controls_disabled:
+		return
 
 	if dagger:
 		if !dagger_attached:
@@ -210,7 +219,7 @@ func get_rotation_tile(cw):
 	var rotation_vector
 	var new_pos
 	
-	if !dagger:
+	if controls_disabled or !dagger or !dagger_attached:
 		return
 	
 	rotation_vector = dagger.get_rotation_vector(cw, human_pos - dagger_pos)
@@ -232,7 +241,7 @@ func try_rotate(new_pos, cw):
 		dagger.bump(new_pos - dagger_pos)
 
 func try_throw():
-	if !dagger_attached:
+	if controls_disabled or !dagger_attached:
 		return
 		
 	var throw_vector = dagger_pos - human_pos
